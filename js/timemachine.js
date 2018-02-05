@@ -66,8 +66,8 @@ function tuning(){
 
 var opt = new tuning();
 
-if(opt.checkCookies('pampam')) { //изменить на !
-	opt.clearStorage();
+if(!opt.checkCookies('pampam')) {
+	//opt.clearStorage();
 	var date = new Date(new Date().getTime() + 60 * 1000); //57 600 000мс 
 	document.cookie = "pampam=value; path=/; expires=" + date.toUTCString();
 }

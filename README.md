@@ -1,4 +1,4 @@
-# Tieme Machine 9 3/4
+# Tieme Machine 9&3/4
 
 ```
 The timer uses local storage to write data.
