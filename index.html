@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tieme Machine</title>
+	<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+	<link rel="mask-icon" href="img/favicon.svg" color="#00а0ff">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body id="bod">
+	<div id="point" class="menu-ico"></div>
+	<nav id="nav-menu" class="menu">
+		<div class="head-nav">Tieme Machine</div>
+		<section>
+			<p>Tieme Machine - это таймер, который поможет отслеживать ваше время, затраченное на любые действия.</p>
+			<p>Запуск таймера произойдет после нажатия на <code>space</code></p>
+			<p>Для записи затраченного интервала времени в таблицу необходимо повторно нажать <code>space</code>, после этого действия таймер не останавливается, а продолжает отсчитывать время, но уже с этого момента.</p>
+			<p>Копирование всех полученных данныех из сформированной таблицы в буфер обмена осуществляется нажатием <code>p</code></p>
+			<p>Удалить все данные из таблицы <code>d^</code></p>
+			<hr>
+			<h2>Дополнительно</h2>
+			<p>Если вы случайно закрыли вкладку, когда таймер активен, вы не потеряете прогресс, нужно будет просто открыть данную страницу.</p>
+			<blockquote>Таймер активен только восемь часов.</blockquote>
+			<p>Все полученные результата хранятся в Local Storage.</p>
+			<p><small>Все предложенные комбинации клавиш на латинице.</small></p>
+		</section>
+		<div class="foter">
+			&copy; 2018 & open source<br>
+		<a href="#">GitHub</a> && <a href="#">Issues</a>
+		</div>
+	</nav>
+	<main>
+		<div class="magic mag-1"></div>
+		<div class="magic mag-2"></div>
+		<div class="magic mag-3"></div>
+		<div class="magic mag-4"></div>
+		<div class="magic mag-5"></div>
+		<div class="magic mag-6"></div>
+		<div class="magic mag-7"></div>
+		<section class="arrow">
+			<div class="circle">
+				<div class="romb">
+					<div class="ram">
+						<div class="circle_two">
+							<span id="hr">9</span>
+							<span id="min" class="bord">3</span>
+							<span id="sec">4</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="block-button">
+			<button id="clear" class="clear">clear table&#x20;</button>
+			<button class="copy">copy&#x20;</button>
+			<br>
+			<input title="Убрать первую колонку" id="check" type="checkbox">
+		</div>
+
+		<div id="table" class="table">
+			<div class="row">
+				<div class="cell">qty.</div>
+				<div class="cell">time spent</div>
+			</div>
+			<div class="row">
+				<div class="cell"><input class="qty" type="text" maxlength="2" value="Количество"></div>
+				<div class="cell">часы:мин</div>
+			</div>
+		</div>
+		<p>press space</p>
+	</main>
+	
+	<script src="js/timemachine.js"></script>
+</body>
+</html>
