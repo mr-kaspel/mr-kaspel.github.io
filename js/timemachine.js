@@ -31,29 +31,67 @@ function tuning(){
 	this.editTable = function(click) {
 		if(click > 1){
 			//Создаем клон последней строки в таблице с данными
-			var coll = document.getElementById('table').children;
-			var clon = coll[coll.length - 1].cloneNode(true);
-			clon.children[1].innerHTML = document.getElementById('hr').innerHTML + ':' + document.	getElementById('min').innerHTML;
+			let coll = document.getElementById('table').children,
+					clon = coll[coll.length - 1].cloneNode(true);
+			clon.children[1].innerHTML = document.getElementById('hr').innerHTML + ':' + document.getElementById('min').innerHTML;
 			clon.children[0].children[0].value = 1;
 
 			return coll[coll.length - 1].parentNode.insertBefore(clon, coll[coll.length - 1].nextSibling);
 		}
 	}
 
-	this.saveTable = function() {
-		var qt = document.getElementById('table').children;
-		var textDump = '';
+	this.saveTable = function(isif) {
+		let qt = document.getElementById('table').children,
+				textDump = '',
+				textDump_two = ' ';
+
+		//if (click == 1) textDump = localStorage.getItem('tableDump');
+		
 		for(var i = 2; i < qt.length; i++) {
 			let a = qt[i].children[0].children[0].value;
 			let b = qt[i].children[1].innerHTML;
 			textDump += a + ";" + b + "/";
+			textDump_two += a + "	" + b + "	\n";
+		}
+		console.log(click);
+
+		if(isif){
+			var input = document.getElementById('copyps');
+			input.value = textDump_two;
+			event.preventDefault();
+			input.select();
+			document.execCommand('copy');
+			input.value = "Количество";
 		}
 
+		opt.dataSaveStorage('tableDump', textDump)
+	}
+
+	this.drawingTable = function() {
+		let data = localStorage.getItem('tableDump');
+		if(data) {
+			var coll = document.getElementById('table').children,
+					row = data.split('/');
+				row.pop();
+				//console.log(row);
+				
+				for(let i = 0; i < row.length; i++) {
+					var clon = coll[coll.length - 1].cloneNode(true);
+
+					clon.children[0].children[0].value = row[i].split(';')[0];
+					clon.children[1].innerHTML = row[i].split(';')[1];
+					coll[coll.length - 1].parentNode.insertBefore(clon, coll[coll.length - 1].nextSibling);
+				}
+		}
+		//return false;
+	}
+
+	this.dataSaveStorage = function(name, facts) {
 		try {
-			localStorage.setItem('tableDump', textDump);
+			localStorage.setItem(name, facts)
 		} catch (e) {
 			if (e == QUOTA_EXCEEDED_ERR) {
-				alert('>5mb');
+				alart(">5mb");
 			}
 		}
 	}
@@ -101,13 +139,7 @@ function tuning(){
 
 			/*Запись в локальное хранилище + проверка на переполнение*/
 			/*Только вот на секунду отстает*/
-			try {
-				localStorage.setItem('dateDump', opt.realTime() + opt.timerTime());
-			} catch (e) {
-				if (e == QUOTA_EXCEEDED_ERR) {
-					alert('>5mb');
-				}
-			}
+			opt.dataSaveStorage('dateDump', opt.realTime() + opt.timerTime());
 
 			return document.getElementById('sec').innerHTML = sec,
 			document.getElementById('min').innerHTML = min,
@@ -139,6 +171,10 @@ if(optio) {
 	}
 }
 
+if(opt.drawingTable()) {
+	opt.drawingTable();
+}
+
 var click = 0;
 
 /*Отслеживаем все нажатия*/
@@ -147,7 +183,15 @@ document.body.addEventListener('keydown', function(e) {
 	let keyup = e.keyCode;
 
 	//убрать 123
-	if(keyup !== 123 && keyup !== 116) e.preventDefault();
+	switch(keyup) {
+		case 123:
+		case 116:
+			e.preventDefault();
+			break;
+		case 80:
+			opt.saveTable(true);
+			break;
+	}
 
 	if(keyup === 32) {
 		click ++;
@@ -157,8 +201,6 @@ document.body.addEventListener('keydown', function(e) {
 			setTimeout(function()
 				{ opt.saveTable();
 			}, 500);
-
-			
 		}
 		opt.editTable(click);
 		console.log("number pressing: " + click);
@@ -179,17 +221,21 @@ document.getElementById('clear').addEventListener('click', function(){
 	console.log('Значение из хранилища, с ключем dateDump, отчищено!');
 });
 
+document.getElementById('copy').addEventListener('click', function() {
+	opt.saveTable(true);
+});
+
 /*Скрываем первый столбец*/
 document.getElementById('check').addEventListener('click', function() {
 	var qt = document.getElementById('table').children;
 	if(document.getElementById('check').checked) {
 		hidingСolumn();
-		localStorage.setItem('options', 'true');
+		opt.dataSaveStorage('options', 'true');
 		return;
 	}
 	for(var j = 1; j < qt.length; j++){
 			qt[j].children[0].style.visibility = '';
 		}
-		localStorage.setItem('options', 'false');
+		opt.dataSaveStorage('options', 'false');
 		return;
 });
