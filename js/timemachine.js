@@ -194,10 +194,10 @@ document.body.addEventListener('keydown', function(e) {
 	document.getElementById('press').innerHTML = "";
 	//убрать 123
 	switch(keyup) {
-		// case 123:
-		// case 116:
-		// 	e.preventDefault();
-		// 	break;
+		case 123:
+		case 116:
+			e.preventDefault();
+			break;
 		case 80:
 			opt.saveTable(true);
 			break;
