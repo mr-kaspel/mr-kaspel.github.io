@@ -4,13 +4,15 @@
 function hidingСolumn(){
 	var qt = document.getElementById('table').children;
 	for(var j = 1; j < qt.length; j++){
-			qt[j].children[0].style.visibility = 'hidden';
+			qt[j].children[1].style.visibility = 'hidden';
+			qt[j].children[2].style.visibility = 'hidden';
 		}
 }
 
 /*Основная функция*/
 function tuning(){
 	let data = new Date();
+
 	this.realTime = function() {
 		let data = new Date();
 		return data.getHours() + ":" + data.getMinutes() + ":" + data.getSeconds() + ";";
@@ -33,8 +35,10 @@ function tuning(){
 			//Создаем клон последней строки в таблице с данными
 			let coll = document.getElementById('table').children,
 					clon = coll[coll.length - 1].cloneNode(true);
-			clon.children[1].innerHTML = document.getElementById('hr').innerHTML + ':' + document.getElementById('min').innerHTML;
-			clon.children[0].children[0].value = 1;
+			clon.children[3].innerHTML = document.getElementById('hr').innerHTML + ':' + document.getElementById('min').innerHTML;
+			clon.children[2].children[0].value = 1;
+			clon.children[1].children[0].value = '';
+			clon.children[0].children[0].checked = 0;
 
 			return coll[coll.length - 1].parentNode.insertBefore(clon, coll[coll.length - 1].nextSibling);
 		}
@@ -48,11 +52,13 @@ function tuning(){
 		//if (click == 1) textDump = localStorage.getItem('tableDump');
 		
 		for(var i = 2; i < qt.length; i++) {
-			let a = qt[i].children[0].children[0].value;
-			let b = qt[i].children[1].innerHTML;
-			textDump += a + ";" + b + "/";
-			textDump_two += a + "	" + b + "	\n";
+			let b = qt[i].children[3].innerHTML,
+					a = qt[i].children[2].children[0].value,
+					c = qt[i].children[1].children[0].value;
+			textDump += c.replace(/ /ig, "&") + ";" + a + ";" + b + "/";
+			textDump_two += c + "	" + a + "	" + b + "	\n";
 		}
+
 		console.log(click);
 
 		if(isif){
@@ -70,6 +76,7 @@ function tuning(){
 	this.drawingTable = function() {
 		let data = localStorage.getItem('tableDump');
 		if(data) {
+			document.getElementById('press').innerHTML = "^&";
 			var coll = document.getElementById('table').children,
 					row = data.split('/');
 				row.pop();
@@ -78,12 +85,15 @@ function tuning(){
 				for(let i = 0; i < row.length; i++) {
 					var clon = coll[coll.length - 1].cloneNode(true);
 
-					clon.children[0].children[0].value = row[i].split(';')[0];
-					clon.children[1].innerHTML = row[i].split(';')[1];
+					clon.children[1].children[0].value = row[i].split(';')[0].replace(/&/ig, " ");
+					clon.children[2].children[0].value = row[i].split(';')[1];
+					clon.children[3].innerHTML = row[i].split(';')[2];
 					coll[coll.length - 1].parentNode.insertBefore(clon, coll[coll.length - 1].nextSibling);
 				}
+			return;
 		}
-		//return false;
+		document.getElementById('press').innerHTML = "press space";
+		return false;
 	}
 
 	this.dataSaveStorage = function(name, facts) {
@@ -181,13 +191,13 @@ var click = 0;
 document.body.addEventListener('keydown', function(e) {
 	e = e || window.event;
 	let keyup = e.keyCode;
-
+	document.getElementById('press').innerHTML = "";
 	//убрать 123
 	switch(keyup) {
-		case 123:
-		case 116:
-			e.preventDefault();
-			break;
+		// case 123:
+		// case 116:
+		// 	e.preventDefault();
+		// 	break;
 		case 80:
 			opt.saveTable(true);
 			break;
@@ -198,8 +208,8 @@ document.body.addEventListener('keydown', function(e) {
 		if(click >= 1){
 			opt.timer();
 			/*Задержка для определение новых узлов*/
-			setTimeout(function()
-				{ opt.saveTable();
+			setTimeout(function() {
+				opt.saveTable();
 			}, 500);
 		}
 		opt.editTable(click);
@@ -234,8 +244,17 @@ document.getElementById('check').addEventListener('click', function() {
 		return;
 	}
 	for(var j = 1; j < qt.length; j++){
-			qt[j].children[0].style.visibility = '';
+			qt[j].children[1].style.visibility = '';
+			qt[j].children[2].style.visibility = '';
 		}
 		opt.dataSaveStorage('options', 'false');
 		return;
+});
+
+document.getElementById('copy').addEventListener('click', function() {
+	let ele = document.getElementById('message');
+	ele.classList.toggle('open');
+	setTimeout(function() {
+		ele.classList.remove('open');
+	}, 1000);
 });

@@ -20,7 +20,6 @@ body:after {
 main {
 	margin: 0 auto;
 	width: 423px;
-	height: 100vh;
 	display: flex;
 	justify-content: flex-start;
 	flex-direction: column;
@@ -268,12 +267,31 @@ span {
 }
 
 .cell:nth-child(2n) {
-	text-align: right;
 	color: #ffc85a;
 }
 
-.cell:nth-child(2n - 1) {
-	padding: 0;
+.cell > input[type="checkbox"] {
+	margin: 0 auto;
+}
+
+.row:first-child .cell:nth-child(1) {
+	box-shadow: none;
+	border: none;
+}
+
+.row .cell:nth-child(1) {
+	width: 11px;
+	height: .8em;
+	border: 1px solid #0a3542;
+	border-radius: 6px 0px 0px 6px;
+	padding: .6em;
+	position: absolute;
+	left: -74px;
+	box-shadow: inset 3px 3px 6px 0px rgba(0, 0, 0, .5);
+}
+
+.row .cell:last-child {
+	text-align: right;
 }
 
 .table input {
@@ -289,6 +307,7 @@ span {
 }
 
 .row:first-child .cell {
+	white-space: nowrap;
 	color: #8c8b94;
 	-moz-user-select: none;
 	-khtml-user-select: none;
@@ -316,6 +335,7 @@ span {
 	background: none;
 	cursor: default;
 }
+
 
 button.copy:after {
 	content: "";
@@ -444,7 +464,7 @@ button.clear:after {
 	box-shadow: none;
 }
 
-input[type="checkbox"] {
+.block-button > input[type="checkbox"] {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
@@ -460,12 +480,12 @@ input[type="checkbox"] {
 	top: 3.4em;
 }
 
-input[type="checkbox"]:checked {
+.block-button > input[type="checkbox"]:checked {
 	background: #248fea;
 }
 
 
-input[type="checkbox"]:before {
+.block-button > input[type="checkbox"]:before {
 	content: "";
 	display: block;
 	width: 14px;
@@ -482,7 +502,7 @@ input[type="checkbox"]:before {
 	animation: bias-l .5s linear;
 }
 
-input[type="checkbox"]:checked:before {
+.block-button > input[type="checkbox"]:checked:before {
 	//left: calc(100% - 30px);
 	right: 0;
 	transition: .5s;
@@ -531,4 +551,60 @@ input[type="checkbox"]:checked:before {
 	100% {
 		right: 0;
 	}
+}
+
+div#message {
+	display: none;
+}
+
+div#message.open {
+	width: 20em;
+	padding: 1em;
+	text-align: center;
+	color: #012530;
+	border-radius: 4px;
+	background: #fff;
+	position: absolute;
+	display: block;
+	top: calc(100% - 50%);
+	z-index: 77;
+	opacity: 0;
+	-webkit-animation: extinction 1s linear;
+					animation: extinction 1s linear;
+}
+
+@-webkit-keyframes extinction {
+	0% {opacity: 1;}
+	50% {opacity: 0.5;}
+	100% { opacity: 0;display:none;}
+}
+
+.flag {
+	width: 10em;
+	height: 5em;
+	background: #ffc85a;
+	position: absolute;
+	right: 0;
+	top: calc(100vh - 50%);
+	border-right: .4em solid #e8b349;
+	border-radius: 4px 0 0 4px;
+}
+
+.flag:before {
+	content: "";
+	position: absolute;
+	border: 2.5em solid transparent;
+	border-left: 2em solid #012530;
+	left: 0;
+}
+
+.flag:after {
+	width: 8em;
+	position: absolute;
+	content: "simple event log";
+	font-weight: 100;
+	font-size: 10px;
+	color: #fff;
+	bottom: -14px;
+	left: 6em;
 }

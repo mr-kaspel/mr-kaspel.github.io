@@ -9,6 +9,7 @@
 </head>
 <body id="bod">
 	<div id="point" class="menu-ico"></div>
+	<div class="flag"></div>
 	<nav id="nav-menu" class="menu">
 		<div class="head-nav">Tieme Machine</div>
 		<section>
@@ -19,8 +20,8 @@
 			<p>Удалить все данные из таблицы <code>d^</code></p>
 			<hr>
 			<h2>Дополнительно</h2>
-			<p>Если вы случайно закрыли вкладку, когда таймер активен, вы не потеряете прогресс, нужно будет просто открыть данную страницу.</p>
-			<blockquote>Таймер активен только восемь часов.</blockquote>
+			<p>Если вы случайно закрыли вкладку, когда таймер активен, вы не потеряете прогресс. После открытия данной вкладки повторно, таймер продолжит отсчет с значения сохраненного перед закрытия вкладки.</p>
+			<blockquote>Таймер активен только шестнадцать часов, после Local Storage отчищается.</blockquote>
 			<p>Все полученные результата хранятся в Local Storage.</p>
 			<p><small>Все предложенные комбинации клавиш на латинице.</small></p>
 		</section>
@@ -54,20 +55,25 @@
 			<button id="clear" class="clear">clear table&#x20;</button>
 			<button id="copy" class="copy">copy&#x20;</button>
 			<br>
-			<input title="Убрать первую колонку" id="check" type="checkbox">
+			<input title="Убрать две перве колонки" id="check" type="checkbox">
 		</div>
 
 		<div id="table" class="table">
 			<div class="row">
+				<div class="cell"></div>
+				<div class="cell">name</div>
 				<div class="cell">qty.</div>
 				<div class="cell">time spent</div>
 			</div>
 			<div class="row">
-				<div class="cell"><input id="copyps" class="qty" type="text" maxlength="2" value="Количество"></div>
+				<div class="cell"><input type="checkbox"></div>
+				<div class="cell"><input id="name" type="text" maxlength="100" value="--------------------"></div>
+				<div class="cell"><input id="copyps" class="qty" type="text" maxlength="3" value="Количество"></div>
 				<div class="cell">часы:мин</div>
 			</div>
 		</div>
-		<p>press space</p>
+		<p id="press"></p>
+		<div id="message">Copy received ^&</div>
 	</main>
 	
 	<script src="js/timemachine.js"></script>
