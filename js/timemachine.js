@@ -289,10 +289,25 @@ document.getElementById('copy').addEventListener('click', function() {
 	}, 1000);
 });
 
-document.getElementById('sum').addEventListener('click', function() {
+var summ = document.getElementById('sum');
+
+summ.addEventListener('click', function() {
 	opt.calculateAmount();
 });
 
 document.getElementById('table').addEventListener('click', function() {
-	
+	let elem = document.getElementById('table').children,
+			a = 0;
+
+	for(let i = 1; i < elem.length; i++) {
+		if(elem[i].children[0].children[0].checked == true) {
+			a++;
+		}
+	}
+	if(a >= 2) {
+				summ.style.display = 'inline-block'
+			} else {
+				summ.style.display = 'none';
+				a = 0;
+			}
 });
