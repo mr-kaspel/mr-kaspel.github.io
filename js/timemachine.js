@@ -51,7 +51,7 @@ function tuning(){
 
 		//if (click == 1) textDump = localStorage.getItem('tableDump');
 		
-		for(var i = 2; i < qt.length; i++) {
+		for(var i = 1; i < qt.length; i++) {
 			let b = qt[i].children[3].innerHTML,
 					a = qt[i].children[2].children[0].value,
 					c = qt[i].children[1].children[0].value;
@@ -62,12 +62,12 @@ function tuning(){
 		console.log(click);
 
 		if(isif){
-			var input = document.getElementById('copyps');
+			var input = document.getElementById('copy-value');
 			input.value = textDump_two;
 			event.preventDefault();
 			input.select();
 			document.execCommand('copy');
-			input.value = "Количество";
+			//input.value = "Количество";
 		}
 
 		opt.dataSaveStorage('tableDump', textDump)
@@ -90,6 +90,11 @@ function tuning(){
 					clon.children[3].innerHTML = row[i].split(';')[2];
 					coll[coll.length - 1].parentNode.insertBefore(clon, coll[coll.length - 1].nextSibling);
 				}
+				/*
+				Удалить первую строку таблицы, 
+				необходимо прежде исправить сохранение таблицы
+				*/
+			document.getElementById('table').children[1].remove();
 			return;
 		}
 		document.getElementById('press').innerHTML = "press space";
@@ -155,6 +160,31 @@ function tuning(){
 			document.getElementById('min').innerHTML = min,
 			document.getElementById('hr').innerHTML = hr;
 		}, 1000);
+	}
+
+	this.calculateAmount = function() {
+		let elem = document.getElementById('table').children,
+				sumH = 0,
+				sumM = 0,
+				sum = 0,
+				j = [];
+
+		for(let i = 1; i < elem.length; i++) {
+			if(elem[i].children[0].children[0].checked == 1) {
+
+				j.push(i);
+				sumH += +elem[i].children[3].innerHTML.split(':')[0];
+				sumM += +elem[i].children[3].innerHTML.split(':')[1];
+			}
+		}
+		sum = sumH + ':' + sumM;
+		elem[j[0]].children[3].innerHTML = sum;
+		elem[j[0]].children[0].children[0].checked = 0;
+
+		for(let i = 1; i < j.length; i++) {
+			elem[j[i]].remove();
+		}
+		opt.saveTable();
 	}
 }
 
@@ -257,4 +287,12 @@ document.getElementById('copy').addEventListener('click', function() {
 	setTimeout(function() {
 		ele.classList.remove('open');
 	}, 1000);
+});
+
+document.getElementById('sum').addEventListener('click', function() {
+	opt.calculateAmount();
+});
+
+document.getElementById('table').addEventListener('click', function() {
+	
 });

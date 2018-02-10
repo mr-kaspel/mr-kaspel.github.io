@@ -1,5 +1,5 @@
 $font: Helvetica Neue, Arial, sans-serif
-$color: #012530;
+$color: #012530
 $shadow: 5px 3px 20px 0px rgba(0, 0, 0, .5)
 
 body
@@ -48,6 +48,19 @@ blockquote
 small 
 	text-decoration: underline
 
+textarea
+	resize: none
+	outline: 0
+	height: 94%
+	width: 75%
+	color: #fff
+	background: #000
+	float: right
+	overflow: hidden
+	border: none
+	opacity: 0.1
+	cursor: unset
+
 button 
 	background: #c62606
 	border: none
@@ -74,7 +87,7 @@ button
 		height: 20px
 		background: url(../img/magic.svg)no-repeat
 		background-size: 19em
-		background-position: -228px
+		background-position: -207px
 		vertical-align: middle
 
 section > .circle
@@ -127,19 +140,40 @@ section.arrow:before
 #nav-menu
 	display: none
 
-nav.menu
-	max-width: 19em
-	height: 100vh
-	font-size: 14px
-	color: #ffedd2
-	position: fixed
-	overflow: auto
-	z-index: 4
-	background: #01212b
-	box-shadow: inset $shadow
-	&.on
-		-webkit-animation: shift .7s cubic-bezier(0.47, 1.74, 0.58, 0.41)
-		animation: shift .7s cubic-bezier(0.47, 1.74, 0.58, 0.41)
+nav
+	&.menu
+		max-width: 19em
+		height: 100vh
+		font-size: 14px
+		color: #ffedd2
+		position: fixed
+		overflow: auto
+		z-index: 4
+		background: #01212b
+		box-shadow: inset $shadow
+		&.on
+			-webkit-animation: shift .7s cubic-bezier(0.47, 1.74, 0.58, 0.41)
+			animation: shift .7s cubic-bezier(0.47, 1.74, 0.58, 0.41)
+	&.menu::-webkit-scrollbar
+		width: 0
+		height: 0
+	&.menu::-webkit-scrollbar-thumb
+		width: 0
+	&.menu.open
+		display: block
+		width: 15%
+		left: 15%
+	&.menu > section
+		padding: 5em 2.5em 0 2.5em
+		text-align: justify
+		word-spacing: -0.3ex
+	a
+		text-decoration: none
+		color: #ffc85a
+	.foter
+		text-align: center
+		font-size: 14px
+		margin-bottom: 2em
 
 @-webkit-keyframes shift 
 	0%
@@ -147,38 +181,13 @@ nav.menu
 	100%
 		left: 0
 
-nav.menu::-webkit-scrollbar
-	width: 0
-	height: 0
-
-nav.menu::-webkit-scrollbar-thumb
-	width: 0
-
-nav.menu.open
-	display: block
-	width: 15%
-	left: 15%
-
-nav.menu > section
-	padding: 5em 2.5em 0 2.5em
-	text-align: justify
-	word-spacing: -0.3ex
-
-nav a
-	text-decoration: none
-	color: #ffc85a
-
 .head-nav
 	width: 100%
 	background: #c62606
 	box-sizing: border-box
-	padding: .5em 1em;
-	text-align: center;
-	text-transform: uppercase
-
-nav .foter
+	padding: .5em 1em
 	text-align: center
-	font-size: 14px
+	text-transform: uppercase
 
 .circle:after
 	content: ''
@@ -221,8 +230,6 @@ nav .foter
 		left: .3em
 		margin: 0
 		font-size: 30px
-
-
 
 span
 	display: block
@@ -294,7 +301,7 @@ span
 		height: .8em
 		border: 1px solid #0a3542
 		border-radius: 6px 0px 0px 6px
-		padding: .6em
+		padding: 9px
 		position: absolute
 		left: -74px
 		box-shadow: inset 3px 3px 6px 0px rgba(0, 0, 0, .5)
@@ -312,8 +319,8 @@ span
 		content: ''
 		background: url(../img/magic.svg)no-repeat
 		background-size: 13em
-		background-position: -138px
-		width: 11px
+		background-position: -127px
+		width: 9px
 		height: .8em
 		cursor: pointer
 		padding: .6em
@@ -336,6 +343,17 @@ span
 		color: #ffc85a
 	> input[type="checkbox"]
 		margin: 0 auto
+		-webkit-appearance: none
+		-moz-appearance: none
+		appearance: none
+		width: 15px
+		height: 15px
+	> input[type="checkbox"]:checked
+			background: url(../img/magic.svg) no-repeat
+			width: 15px
+			height: 15px
+			background-size: 37em
+			background-position: -399px
 
 .magic
 	background: url(../img/magic.svg)no-repeat
@@ -346,16 +364,16 @@ span
 	z-index: 3
 
 .mag-1
-	background-position: 0
+	background-position: -15px
 	top: 53px
 
 .mag-2
-	background-position: -26px
+	background-position: -38px
 	top: 70px
 	left: 183px
 
 .mag-3
-	background-position: -51px
+	background-position: -56px
 	top: 61px
 	right: 232px
 
@@ -365,17 +383,17 @@ span
 	left: 180px
 
 .mag-5
-	background-position: -102px
+	background-position: -95px
 	top: 32px
 	left: 158px
 
 .mag-6
-	background-position: -128px
+	background-position: -115px
 	top: 16px
 	left: 167px
 
 .mag-7
-	background-position: -154px
+	background-position: -135px
 	top: 4px
 	left: 170px
 
@@ -462,7 +480,7 @@ div
 		background: #fff
 		position: absolute
 		display: block
-		top: calc(100% - 50%)
+		top: calc(100% - 35%)
 		z-index: 77
 		opacity: 0
 		-webkit-animation: extinction 1s linear
@@ -491,7 +509,7 @@ div
 		position: absolute
 		border: 2.5em solid transparent
 		border-left: 2em solid $color
-		left: 0
+		left: -1px
 	&:after
 		width: 8em
 		position: absolute
