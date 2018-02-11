@@ -64,7 +64,7 @@
 			"sizes": "16x16",
 			"type": "image/png"
 		},  {
-			"src": "img/favicon.svg",
+			"src": "img/favicon/favicon.svg",
 			"sizes": "any",
 			"type": "image/svg"
 		}
