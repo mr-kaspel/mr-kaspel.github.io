@@ -186,6 +186,28 @@ function tuning(){
 		}
 		opt.saveTable();
 	}
+
+	this.pressengCombinations = function(fn) {
+		let codes = [].slice.call(arguments, 1),
+				press = {};
+
+		document.onkeydown = function(e) {
+			e = e || window.event;
+			press[e.keyCode] = true;
+
+			for(let i = 0; i < codes.length; i++) {
+				if(!press[codes[i]]) {
+					return;
+				}
+			}
+			press = {};
+			fn();
+		};
+		document.onkeyup = function(e) {
+			e = e || window.event;
+			delete press[e.keyCode];
+		};
+	}
 }
 
 var opt = new tuning();
@@ -217,23 +239,8 @@ if(opt.drawingTable()) {
 
 var click = 0;
 
-/*Отслеживаем все нажатия*/
-document.body.addEventListener('keydown', function(e) {
-	e = e || window.event;
-	let keyup = e.keyCode;
-	document.getElementById('press').innerHTML = "";
-	//убрать 123
-	switch(keyup) {
-		case 123:
-		case 116:
-			e.preventDefault();
-			break;
-		case 80:
-			opt.saveTable(true);
-			break;
-	}
-
-	if(keyup === 32) {
+opt.pressengCombinations(
+	function() {
 		click ++;
 		if(click >= 1){
 			opt.timer();
@@ -244,9 +251,14 @@ document.body.addEventListener('keydown', function(e) {
 		}
 		opt.editTable(click);
 		console.log("number pressing: " + click);
-	}
-});
-
+	},
+	(function() {
+		return "Z".charCodeAt(0);
+	})(),
+	(function() {
+		return "X".charCodeAt(0);
+	})()
+);
 
 /* Кнопка меню*/
 document.getElementById('point').addEventListener('click', function(){
