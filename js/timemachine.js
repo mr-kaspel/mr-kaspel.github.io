@@ -304,6 +304,7 @@ document.getElementById('copy').addEventListener('click', function() {
 var summ = document.getElementById('sum');
 
 summ.addEventListener('click', function() {
+	summ.style.display = 'none';
 	opt.calculateAmount();
 });
 
