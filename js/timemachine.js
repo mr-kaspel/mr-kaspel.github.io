@@ -312,6 +312,7 @@ summ.addEventListener('click', function() {
 	opt.calculateAmount();
 });
 
+/*Исправить_________________________*/
 document.getElementById('table').addEventListener('click', function() {
 	let elem = document.getElementById('table').children,
 			a = 0;
@@ -374,6 +375,6 @@ document.getElementById('help').addEventListener('click', function() {
 	document.getElementById('point').classList.toggle('open');
 });
 
-document.body.addEventListener('click', function() {
+document.body.addEventListener('mouseup', function() {
 	document.getElementById('contextmenu').style.display = 'none';
 });
