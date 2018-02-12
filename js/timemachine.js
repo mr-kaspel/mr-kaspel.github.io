@@ -29,7 +29,7 @@ function tuning(){
 				sec = data.getSeconds() - rm[0].split(':')[2] + +rm[1].split(':')[2];
 		return hr + ":" + min + ":" + sec;
 	}
-
+var tabind = 1;
 	this.editTable = function(click) {
 		if(click > 1){
 			//Создаем клон последней строки в таблице с данными
@@ -39,6 +39,8 @@ function tuning(){
 			clon.children[2].children[0].value = 1;
 			clon.children[1].children[0].value = '';
 			clon.children[0].children[0].checked = 0;
+			clon.tabIndex = tabind;
+			tabind++;
 
 			return coll[coll.length - 1].parentNode.insertBefore(clon, coll[coll.length - 1].nextSibling);
 		}
@@ -89,6 +91,8 @@ function tuning(){
 					clon.children[2].children[0].value = row[i].split(';')[1];
 					clon.children[3].innerHTML = row[i].split(';')[2];
 					coll[coll.length - 1].parentNode.insertBefore(clon, coll[coll.length - 1].nextSibling);
+					clon.tabIndex = tabind;
+					tabind++;
 				}
 				/*
 				Удалить первую строку таблицы, 
@@ -323,4 +327,53 @@ document.getElementById('table').addEventListener('click', function() {
 				summ.style.display = 'none';
 				a = 0;
 			}
+});
+
+var aelem;
+
+function activElemtn() {
+	aelem = document.activeElement
+	return aelem;
+}
+
+document.body.addEventListener('contextmenu', function(e) {
+	e = e || window.event;
+	e.preventDefault();
+
+	activElemtn();
+	var cont = document.getElementById('contextmenu');
+
+	if(aelem.parentNode.parentNode.className == 'row' || aelem.className == 'row') {
+		cont.style.left = e.clientX - 1 + 'px';
+		cont.style.top = e.clientY - 20 + 'px';
+		document.getElementById('delet').style.display = '';
+		cont.style.display = "block";
+	} else {
+		cont.style.left = e.clientX - 1 + 'px';
+		cont.style.top = e.clientY - 20 + 'px';
+		document.getElementById('delet').style.display = 'none';
+		cont.style.display = "block";
+	}
+});
+
+document.getElementById('delet').addEventListener('click', function() {
+	if(aelem.parentNode.parentNode.className == 'row') {
+		aelem.parentNode.parentNode.remove();
+		document.getElementById('contextmenu').style.display = 'none';
+	}
+	if( aelem.className == 'row') {
+		document.getElementById('contextmenu').style.display = 'none';
+		aelem.remove();
+	}
+});
+
+document.getElementById('help').addEventListener('click', function() {
+	let button = document.getElementById('nav-menu');
+	button.classList.toggle('on');
+	button.style.display = 'block';
+	document.getElementById('point').classList.toggle('open');
+});
+
+document.body.addEventListener('click', function() {
+	document.getElementById('contextmenu').style.display = 'none';
 });
