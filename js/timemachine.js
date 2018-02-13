@@ -179,6 +179,10 @@ var tabind = 1;
 				j.push(i);
 				sumH += +elem[i].children[3].innerHTML.split(':')[0];
 				sumM += +elem[i].children[3].innerHTML.split(':')[1];
+				while(sumM >= 60) {
+					sumM -= 60;
+					sumH += 1;
+				}
 			}
 		}
 		sum = sumH + ':' + sumM;
@@ -231,9 +235,17 @@ if(dateTime) {
 /*Проверка в локальном хранилище параметров*/
 let optio = localStorage.getItem('options');
 if(optio) {
-	if(optio.indexOf('true') !== -1) {
+	if(optio.indexOf('1') !== -1) {
 		hidingСolumn();
 		document.getElementById('check').checked = 1;
+	}
+}
+
+let optio_two = localStorage.getItem('options_two');
+if(optio_two) {
+	if(optio_two.indexOf('1') !== -1) {
+		document.getElementById('check_two').checked = 1;
+		document.body.style.background = '#e6b451';
 	}
 }
 
@@ -286,15 +298,25 @@ document.getElementById('check').addEventListener('click', function() {
 	var qt = document.getElementById('table').children;
 	if(document.getElementById('check').checked) {
 		hidingСolumn();
-		opt.dataSaveStorage('options', 'true');
+		opt.dataSaveStorage('options', '1');
 		return;
 	}
 	for(var j = 1; j < qt.length; j++){
 			qt[j].children[1].style.visibility = '';
 			qt[j].children[2].style.visibility = '';
 		}
-		opt.dataSaveStorage('options', 'false');
+		opt.dataSaveStorage('options', '0');
 		return;
+});
+
+document.getElementById('check_two').addEventListener('click', function() {
+	if(document.getElementById('check_two').checked == 1) {
+		opt.dataSaveStorage('options_two', '1');
+		document.body.style.background = '#e6b451';
+		return;
+	}
+	document.body.style.background = '';
+	opt.dataSaveStorage('options_two', '0');
 });
 
 document.getElementById('copy').addEventListener('click', function() {
