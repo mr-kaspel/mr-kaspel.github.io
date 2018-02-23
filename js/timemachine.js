@@ -397,6 +397,41 @@ document.getElementById('help').addEventListener('click', function() {
 	document.getElementById('point').classList.toggle('open');
 });
 
-document.body.addEventListener('mouseup', function() {
-	document.getElementById('contextmenu').style.display = 'none';
+const list = document.querySelector('.table');
+list.addEventListener("dragstart", e => {
+	const target = e.target;
+	//console.log(e.target);
+	e.dataTransfer.setData('html', e.target.children[0].outerHTML + e.target.children[1].outerHTML + e.target.children[2].outerHTML + e.target.children[3].outerHTML);
+	target.classList.add('visible');
+});
+
+list.addEventListener('dragenter', e => {
+	const target = e.target.parentElement;
+	
+	if(target.classList[0] !== 'row') return;
+
+	const elem = document.createElement('div');
+	const placeholder = document.querySelectorAll('.dashed');
+
+	Array.from(placeholder).forEach(elem => list.removeChild(elem));
+
+	elem.className = 'row dashed';
+	//console.log(target.parentElement);
+	target.parentElement.insertBefore(elem, target);
+});
+
+list.addEventListener('dragover', e => {
+ e.preventDefault();
+})
+
+list.addEventListener('drop', e => {
+	const visibleElem = document.querySelector('.visible');
+	const placeholder = document.querySelector('.dashed');
+	const elem = e.dataTransfer.getData('html');
+
+	//console.log(elem);
+	placeholder.innerHTML = elem;
+	list.removeChild(visibleElem);
+	placeholder.classList.remove('dashed');
+	placeholder.draggable = 'true';
 });
