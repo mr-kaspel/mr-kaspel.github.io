@@ -819,7 +819,10 @@ div#message.open {
 }
 
 .row.dashed {
-	border: 1px dashed #fff;
 	width: 426px;
 	height: 35px;
+}
+
+.row.dashed + .row {
+	border: 1px dashed #fff;
 }

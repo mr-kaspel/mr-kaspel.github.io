@@ -119,6 +119,7 @@ var tabind = 1;
 		return localStorage.clear();
 	}
 
+	//	Убрать, есть возможно отслеживать время прошедшее с последнего сеанса
 	this.checkCookies = function(name) {
 		let matches = document.cookie.match(new RegExp(
 		"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -400,15 +401,17 @@ document.getElementById('help').addEventListener('click', function() {
 const list = document.querySelector('.table');
 list.addEventListener("dragstart", e => {
 	const target = e.target;
-	//console.log(e.target);
+
+	//console.log(target.children[2].children[0].value);
 	e.dataTransfer.setData('html', e.target.children[0].outerHTML + e.target.children[1].outerHTML + e.target.children[2].outerHTML + e.target.children[3].outerHTML);
+	e.dataTransfer.setData('val', e.target.children[1].children[0].value + ';' + e.target.children[2].children[0].value);
 	target.classList.add('visible');
 });
 
 list.addEventListener('dragenter', e => {
 	const target = e.target.parentElement;
-	
-	if(target.classList[0] !== 'row') return;
+
+	if (target.classList[0] !== 'row' || target.parentElement.children[0] == target) return;
 
 	const elem = document.createElement('div');
 	const placeholder = document.querySelectorAll('.dashed');
@@ -416,7 +419,13 @@ list.addEventListener('dragenter', e => {
 	Array.from(placeholder).forEach(elem => list.removeChild(elem));
 
 	elem.className = 'row dashed';
-	//console.log(target.parentElement);
+
+	// решить проблему добавление позиции последнему элементу
+	/*if (target.tabIndex == target.parentElement.children[target.parentElement.children.length - 1].tabIndex && e.screenz-17 < e.clientY) {
+		target.parentElement.insertBefore(elem, target.parentElement.children[target.parentElement.children.length]);
+		return;
+	}*/
+
 	target.parentElement.insertBefore(elem, target);
 });
 
@@ -428,10 +437,20 @@ list.addEventListener('drop', e => {
 	const visibleElem = document.querySelector('.visible');
 	const placeholder = document.querySelector('.dashed');
 	const elem = e.dataTransfer.getData('html');
+	const valElem = e.dataTransfer.getData('val').split(';');
+	const tableElem = document.querySelectorAll('.row');
+	let j = 1;
 
-	//console.log(elem);
 	placeholder.innerHTML = elem;
 	list.removeChild(visibleElem);
 	placeholder.classList.remove('dashed');
+	placeholder.children[1].children[0].value = valElem[0];
+	placeholder.children[2].children[0].value =valElem[1];
 	placeholder.draggable = 'true';
+	
+	for(let i = 1; i < tableElem.length; i++) {
+		tableElem[i].tabIndex = j;
+		j++;
+	}
+	//opt.saveTable();
 });
