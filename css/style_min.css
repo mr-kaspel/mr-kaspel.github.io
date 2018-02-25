@@ -98,7 +98,7 @@ button {
 	background: #c62606;
 	border: 0;
 	color: #ffedd2;
-	padding: .7em 1em;
+	padding: .5em 1em;
 	margin: 0 1em;
 	cursor: pointer;
 	-webkit-box-shadow: 5px 3px 20px 0 rgba(0, 0, 0, .5);
@@ -111,7 +111,7 @@ button:hover {
 
 button.copy:after, button.clear:after, button.sum:after {
 	margin-left: .4em;
-	font-size: 136%;
+	font-size: 105%;
 	font-family: "fontello";
 	font-style: normal;
 	font-weight: normal;
@@ -589,7 +589,7 @@ section>input[type=checkbox]:checked:before {
 	content: '';
 	margin-left: -.1em;
 	margin-right: .2em;
-	font-size: 166%;
+	font-size: 131%;
 }
 
 .magic {

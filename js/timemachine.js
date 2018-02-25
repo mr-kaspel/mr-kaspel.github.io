@@ -69,7 +69,7 @@ var tabind = 1;
 			event.preventDefault();
 			input.select();
 			document.execCommand('copy');
-			//input.value = "Количество";
+			input.value = '';
 		}
 
 		opt.dataSaveStorage('tableDump', textDump)
@@ -378,6 +378,10 @@ document.body.addEventListener('contextmenu', function(e) {
 		document.getElementById('delet').style.display = 'none';
 		cont.style.display = "block";
 	}
+});
+
+document.body.addEventListener('click', function( ) {
+	document.getElementById('contextmenu').style.display = 'none'
 });
 
 document.getElementById('delet').addEventListener('click', function() {
