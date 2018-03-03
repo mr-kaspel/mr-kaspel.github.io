@@ -31,7 +31,8 @@ footer {
 	padding: 1em;
 	position: relative;
 	overflow: hidden;
-	box-sizing: border-box
+	box-sizing: border-box;
+	margin-bottom: -8.5%;
 }
 
 footer > div {
@@ -354,7 +355,11 @@ nav .foter {
 	-webkit-box-align: end;
 	-webkit-align-items: flex-end;
 	-ms-flex-align: end;
-	align-items: flex-end
+	align-items: flex-end;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none
+	
 }
 
 .romb {
@@ -888,7 +893,7 @@ div#message.open {
 	position: absolute;
 	bottom: -3em;
 	right: -6.5em;
-	font-weight: bold
+	font-weight: bold;
 	-moz-user-select: none;
 	-khtml-user-select: none;
 	user-select: none
