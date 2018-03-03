@@ -161,6 +161,12 @@ var tabind = 1;
 			/*Только вот на секунду отстает*/
 			opt.dataSaveStorage('dateDump', opt.realTime() + opt.timerTime());
 
+			/* Расчет суммарного времени */
+			const mastime = opt.summTime().split(':');
+			mastime[0] = +mastime[0] + +hr;
+			mastime[1] = +mastime[0] + +min;
+			document.getElementById('all-passed').innerHTML = mastime.join(':');
+
 			return document.getElementById('sec').innerHTML = sec,
 			document.getElementById('min').innerHTML = min,
 			document.getElementById('hr').innerHTML = hr;
@@ -216,6 +222,29 @@ var tabind = 1;
 			e = e || window.event;
 			delete press[e.keyCode];
 		};
+	}
+	this.summTime = function() {
+		const elemTime = document.querySelectorAll('.cell');
+		let hh = 0;
+		let mm = 0;
+		let sum;
+		for(let i = 3; i < elemTime.length; i++) {
+			
+			if (elemTime[i].childNodes.length == 1 && !elemTime[i].childNodes[0].className) {
+				let numb =  elemTime[i].innerHTML.split(':');
+				if (numb[0] == +numb[0]) {
+					for(let i = 0; i < numb.length; i++) {
+						if(!(i/2)^0) {
+							hh += +numb[i];
+							//console.log(hh);
+						} else {
+							mm += +numb[i];
+						}
+					}
+				}
+			}
+		}
+		return hh + ":" + mm;
 	}
 }
 
