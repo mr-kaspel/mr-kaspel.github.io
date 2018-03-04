@@ -65,11 +65,13 @@ var tabind = 1;
 
 		if(isif){
 			var input = document.getElementById('copy-value');
+			input.disabled = false;
 			input.value = textDump_two;
 			event.preventDefault();
 			input.select();
 			document.execCommand('copy');
 			input.value = '';
+			input.disabled = true;
 		}
 
 		opt.dataSaveStorage('tableDump', textDump)
