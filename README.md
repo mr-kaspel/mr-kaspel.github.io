@@ -11,4 +11,4 @@ Even after accidental closing, you will not lose any progress.
 
 > also, local storage can be cleaned manually by clicking the clear button.
 
-![alt text](/img/scrin_one.PNG)
+![alt text](/img/scrin_one.png)
