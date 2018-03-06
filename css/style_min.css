@@ -676,7 +676,7 @@ section>input[type=checkbox]:checked:before {
 	width: 33px;
 	height: 4px;
 	background: #ffc85a;
-	position: absolute;
+	position: fixed;
 	z-index: 5;
 	-webkit-box-shadow: 4px 3px 0 0 rgba(0, 0, 0, .7);
 	box-shadow: 4px 3px 0 0 rgba(0, 0, 0, .7)

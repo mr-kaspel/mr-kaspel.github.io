@@ -277,7 +277,8 @@ let optio_two = localStorage.getItem('options_two');
 if(optio_two) {
 	if(optio_two.indexOf('1') !== -1) {
 		document.getElementById('check_two').checked = 1;
-		document.body.style.background = '#e6b451';
+		document.querySelector(".circle").style.background = "linear-gradient(to bottom, transparent 50%, rgba(225, 225, 225, .25) 50%), linear-gradient(to bottom, #8E3CEB, #0E4CEB)";
+		document.querySelector(".circle").style.backgroundSize = "10px 10px, 100% 100%";
 	}
 }
 
@@ -342,12 +343,14 @@ document.getElementById('check').addEventListener('click', function() {
 });
 
 document.getElementById('check_two').addEventListener('click', function() {
+	const elem = document.querySelector(".circle");
 	if(document.getElementById('check_two').checked == 1) {
 		opt.dataSaveStorage('options_two', '1');
-		document.body.style.background = '#e6b451';
+		elem.style.background = "linear-gradient(to bottom, transparent 50%, rgba(225, 225, 225, .25) 50%), linear-gradient(to bottom, #8E3CEB, #0E4CEB)";
+		elem.style.backgroundSize = "10px 10px, 100% 100%";
 		return;
 	}
-	document.body.style.background = '';
+	elem.style.background = '';
 	opt.dataSaveStorage('options_two', '0');
 });
 
@@ -488,4 +491,15 @@ list.addEventListener('drop', e => {
 		j++;
 	}
 	//opt.saveTable();
+});
+
+document.querySelector('.sidebar-help').addEventListener('wheel', function () {
+	console.log(this.getBoundingClientRect()['top']);
+	if (this.getBoundingClientRect()['top'] < 10) {
+		//console.log(this.getBoundingClientRect());
+		document.getElementById('point').style.top = '-3em';
+	}
+	else {
+		document.getElementById('point').style.top = '3em';
+	}
 });
