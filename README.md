@@ -11,7 +11,7 @@ Even after accidental closing, you will not lose any progress.
 
 > also, local storage can be cleaned manually by clicking the clear button.
 <p align="center">
-<img src="/mr-kaspel/mr-kaspel.github.io/blob/master/img/gifka.gif" alt="timer nine and three quarters" style="max-width:100%;">
+<img src="/img/gifka.gif" alt="timer nine and three quarters" style="max-width:100%;">
 </p>
 
 **A convenient time tracking tool**. Formally, this seems not important and not necessary, of course, I already remember everything. When the value of the number of tasks increases, you gradually realize that somewhere there is a leakage of efficiency. Planning as it turns out to be a very important process for increasing productivity, tracking and planning based on the data obtained will allow you to evaluate and project the activity model without loss of resources.
