@@ -494,9 +494,7 @@ list.addEventListener('drop', e => {
 });
 
 document.querySelector('.sidebar-help').addEventListener('wheel', function () {
-	console.log(this.getBoundingClientRect()['top']);
 	if (this.getBoundingClientRect()['top'] < 10) {
-		//console.log(this.getBoundingClientRect());
 		document.getElementById('point').style.top = '-3em';
 	}
 	else {

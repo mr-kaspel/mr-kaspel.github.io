@@ -1,7 +1,7 @@
 # Tieme Machine 9&3/4
 
 <p align="center">
-<img src="/img/gifka.gif" alt="timer nine and three quarters" style="max-width:30%;">
+<img src="/img/gifka.gif" alt="timer nine and three quarters">
 </p>
 
 ```
