@@ -216,7 +216,7 @@ section.arrow:before {
 	display: inline-block;
 	width: .5em;
 	height: 12em;
-	background: #011a21;
+	background: linear-gradient(#4c0404,#011a21);
 	position: absolute;
 	margin: 0 4.7em;
 	border-top: .6em solid #c62606;
@@ -450,6 +450,7 @@ section>input[type=checkbox] {
 
 section>input[type=checkbox] {
 	position: sticky;
+	position: -webkit-sticky;
 	vertical-align: middle
 }
 
