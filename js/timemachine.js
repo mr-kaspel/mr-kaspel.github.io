@@ -188,7 +188,7 @@ var tabind = 1;
 						div.style.borderRadius = "0 50% 50% 0";
 						div.style.background = arrColor[calcRandom(0, arrColor.length-1)];
 						document.querySelector('.blocks-time').children[i].appendChild(div);
-					} else if(parseInt(document.querySelector('.blocks-time').children[i].children[0].style.width) < 100) {
+					} else if(document.querySelector('.blocks-time').children[i].children.length === 1 && parseInt(document.querySelector('.blocks-time').children[i].children[0].style.width) < 100) {
 						document.querySelector('.blocks-time').children[i].children[0].style.width = (60 / 100) * mastime[1] + "%";
 					} else {
 						continue;
