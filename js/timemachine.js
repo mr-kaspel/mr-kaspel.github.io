@@ -130,7 +130,7 @@ var tabind = 1;
 	}
 
 	this.menuButton = function() {
-		let button = document.getElementById('point');
+		let button = document.querySelector('.menu-block');
 		button.classList.toggle('open');
 		document.getElementById('nav-menu').classList.toggle('on');
 		if(button.className.lastIndexOf('open') !== -1) {
@@ -164,10 +164,37 @@ var tabind = 1;
 			opt.dataSaveStorage('dateDump', opt.realTime() + opt.timerTime());
 
 			/* Расчет суммарного времени */
-			const mastime = opt.summTime().split(':');
+			let mastime = opt.summTime().split(':');
 			mastime[0] = +mastime[0] + +hr;
 			mastime[1] = +mastime[0] + +min;
 			document.getElementById('all-passed').innerHTML = mastime.join(':');
+
+			function calcRandom(min, max) {
+				return Math.floor(min + Math.random() * (max + 1 - min));
+			}
+			/* заполнение ячеек если прошел час */
+			let arrColor = ["#fd544d", "#546dfe", "#17ffff", "#63f2b2", "#fffe03", "#ffab40", "#ffb400"];
+			let contTime = mastime[0];
+			if(contTime <= 24) {
+				for(let i = 0; i <= mastime[0]; i++) {
+					let div = document.createElement('div');
+					if(contTime > 0 && document.querySelector('.blocks-time').children[i].children.length === 0) {
+						contTime--;
+						div.style.background = arrColor[calcRandom(0, arrColor.length-1)];
+						div.style.width = "100%";
+						document.querySelector('.blocks-time').children[i].appendChild(div);
+					} else if(document.querySelector('.blocks-time').children[i].children.length === 0 && mastime[1] > 0){
+						div.style.width = 0.6 * mastime[1] + "%";
+						div.style.borderRadius = "0 50% 50% 0";
+						div.style.background = arrColor[calcRandom(0, arrColor.length-1)];
+						document.querySelector('.blocks-time').children[i].appendChild(div);
+					} else if(parseInt(document.querySelector('.blocks-time').children[i].children[0].style.width) < 100) {
+						document.querySelector('.blocks-time').children[i].children[0].style.width = (60 / 100) * mastime[1] + "%";
+					} else {
+						continue;
+					}
+				}
+			}
 
 			return document.getElementById('sec').innerHTML = sec,
 			document.getElementById('min').innerHTML = min,
@@ -293,7 +320,7 @@ opt.pressengCombinations(
 		click ++;
 		if(click >= 1){
 			opt.timer();
-			/*Задержка для определение новых узлов*/
+			/*Задержка для определеня новых узлов*/
 			setTimeout(function() {
 				opt.saveTable();
 			}, 500);
@@ -310,7 +337,7 @@ opt.pressengCombinations(
 );
 
 /* Кнопка меню*/
-document.getElementById('point').addEventListener('click', function(){
+document.querySelector('.menu-block').addEventListener('click', function() {
 	opt.menuButton();
 });
 
@@ -433,7 +460,7 @@ document.getElementById('help').addEventListener('click', function() {
 	let button = document.getElementById('nav-menu');
 	button.classList.toggle('on');
 	button.style.display = 'block';
-	document.getElementById('point').classList.toggle('open');
+	document.querySelector('.menu-block').classList.toggle('open');
 });
 
 const list = document.querySelector('.table');
@@ -458,7 +485,7 @@ list.addEventListener('dragenter', e => {
 
 	elem.className = 'row dashed';
 
-	// решить проблему добавление позиции последнему элементу
+	// добавление позиции последнему элементу
 	/*if (target.tabIndex == target.parentElement.children[target.parentElement.children.length - 1].tabIndex && e.screenz-17 < e.clientY) {
 		target.parentElement.insertBefore(elem, target.parentElement.children[target.parentElement.children.length]);
 		return;
@@ -495,9 +522,10 @@ list.addEventListener('drop', e => {
 
 document.querySelector('.sidebar-help').addEventListener('wheel', function () {
 	if (this.getBoundingClientRect()['top'] < 10) {
-		document.getElementById('point').style.top = '-3em';
+		document.querySelector('.menu-block').style.top = '-3em';
 	}
 	else {
-		document.getElementById('point').style.top = '3em';
+		document.querySelector('.menu-block').style.top = '3em';
 	}
 });
+
