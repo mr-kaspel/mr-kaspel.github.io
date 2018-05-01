@@ -166,7 +166,7 @@ var tabind = 1;
 			/* Расчет суммарного времени */
 			let mastime = opt.summTime().split(':');
 			mastime[0] = +mastime[0] + +hr;
-			mastime[1] = +mastime[0] + +min;
+			mastime[1] = +mastime[1] + +min;
 			document.getElementById('all-passed').innerHTML = mastime.join(':');
 
 			function calcRandom(min, max) {
