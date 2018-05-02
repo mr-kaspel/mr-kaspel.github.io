@@ -167,6 +167,13 @@ var tabind = 1;
 			let mastime = opt.summTime().split(':');
 			mastime[0] = +mastime[0] + +hr;
 			mastime[1] = +mastime[1] + +min;
+
+			if(+mastime[1] >= 60) {
+				//mastime[0] = +mastime[0] + 1;
+				//mastime[1] = 0;
+				//console.log(mastime[0] + ' --time');
+			}
+
 			document.getElementById('all-passed').innerHTML = mastime.join(':');
 
 			function calcRandom(min, max) {
@@ -178,6 +185,12 @@ var tabind = 1;
 			if(contTime <= 24) {
 				for(let i = 0; i <= mastime[0]; i++) {
 					let div = document.createElement('div');
+					if(parseInt(document.querySelector('.blocks-time').children[i].children.length === 1 && document.querySelector('.blocks-time').children[i].children[0].style.width) > 98.3 && !isNaN(parseInt(document.querySelector('.blocks-time').children[i].children[0].style.borderRadius))) {
+						document.querySelector('.blocks-time').children[i].children[0].style.width = "100%";
+						document.querySelector('.blocks-time').children[i].children[0].style.borderRadius = "0%";
+						//console.log('неполн элем');
+						break;
+					}
 					if(contTime > 0 && document.querySelector('.blocks-time').children[i].children.length === 0) {
 						contTime--;
 						div.style.background = arrColor[calcRandom(0, arrColor.length-1)];
@@ -195,6 +208,7 @@ var tabind = 1;
 					}
 				}
 			}
+
 
 			return document.getElementById('sec').innerHTML = sec,
 			document.getElementById('min').innerHTML = min,

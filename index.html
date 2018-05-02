@@ -27,9 +27,6 @@
 	<div class="menu-block">
 		<div class="menu-block-sandwich"></div>
 	</div>
-
-	<div id="point" class="menu-ico">	</div>
-	<div class="flag"><textarea id="copy-value" disabled="disabled"></textarea></div>
 	<nav id="nav-menu" class="menu">
 		<div class="head-nav">Tieme Machine</div>
 		<section class="sidebar-help">
@@ -52,99 +49,102 @@
 		<a href="https://github.com/mr-kaspel/mr-kaspel.github.io/tree/master" target="_blank" rel="noopener noreferrer">GitHub</a> && <a href="https://github.com/mr-kaspel/mr-kaspel.github.io/issues" target="_blank" rel="noopener noreferrer">Issues</a>
 		</div>
 	</nav>
-	<div class="timeline">
-		<div class="block-hour">
-			<div>1</div>
-			<div>2</div>
-			<div>3</div>
-			<div>3</div>
-			<div>4</div>
-			<div>6</div>
-			<div>7</div>
-			<div>8</div>
-		</div>
-		<div class="working-day">
-			<div>d.one</div>
-			<div>d.two</div>
-			<div>d.three</div>
-		</div>
-		<div class="blocks-time">
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-			<div class="blocks-time-hour"></div>
-		</div>
-		<div class="signature">Working day schedule.</div>
-	</div>
 	<main>
-		<div class="magic mag-1"></div>
-		<div class="magic mag-2"></div>
-		<div class="magic mag-3"></div>
-		<div class="magic mag-4"></div>
-		<div class="magic mag-5"></div>
-		<div class="magic mag-6"></div>
-		<div class="magic mag-7"></div>
-		<section class="arrow">
-			<div class="circle">
-				<div class="romb">
-					<div class="ram">
-						<div class="circle_two">
-							<span id="hr">9</span>
-							<span id="min" class="bord">3</span>
-							<span id="sec">4</span>
+		<div class="flag"><textarea id="copy-value" disabled="disabled"></textarea></div>
+		<div class="block-main-timer">
+			<div class="magic mag-1"></div>
+			<div class="magic mag-2"></div>
+			<div class="magic mag-3"></div>
+			<div class="magic mag-4"></div>
+			<div class="magic mag-5"></div>
+			<div class="magic mag-6"></div>
+			<div class="magic mag-7"></div>
+			<section class="arrow">
+				<div class="circle">
+					<div class="romb">
+						<div class="ram">
+							<div class="circle_two">
+								<span id="hr">9</span>
+								<span id="min" class="bord">3</span>
+								<span id="sec">4</span>
+							</div>
 						</div>
 					</div>
 				</div>
+			</section>
+			<div class="block-button">
+				<button id="clear" title="Clear the entire table." class="clear">clear table&#x20;</button>
+				<button id="copy" title="Copy the entire contents of the table." class="copy">copy&#x20;</button>
+				<button id="sum" title="Summarize the time of work. The name of the work remains two values in the table." class="sum" style="display:none">sum time</button>
+				<br>
+				<input title="Hide the first two columns of the table." id="check" type="checkbox">
+				<div title="Total time of all works." id="all-passed" class="all-passed">10:30</div>
 			</div>
-		</section>
-		<div class="block-button">
-			<button id="clear" title="Clear the entire table." class="clear">clear table&#x20;</button>
-			<button id="copy" title="Copy the entire contents of the table." class="copy">copy&#x20;</button>
-			<button id="sum" title="Summarize the time of work. The name of the work remains two values in the table." class="sum" style="display:none">sum time</button>
-			<br>
-			<input title="Hide the first two columns of the table." id="check" type="checkbox">
-			<div title="Total time of all works." id="all-passed" class="all-passed">10:30</div>
+			<div id="table" class="table">
+				<div class="row">
+					<div class="cell"></div>
+					<div class="cell">name</div>
+					<div class="cell">qty.</div>
+					<div class="cell">time spent</div>
+				</div>
+				<div class="row" draggable="true">
+					<div class="cell"><input class="ico" type="checkbox"></div>
+	<div class="cell">
+		<input id="name" type="text" maxlength="100" value="-------------">
+	</div>
+	<div class="cell">
+		<input class="qty" type="text" maxlength="3" value="Количество">
+	</div>
+					<div class="cell">часы:мин</div>
+				</div>
+			</div>
+			<p id="press"></p>
+			<div id="message">Copy received ^&</div>
 		</div>
-		<div id="table" class="table">
-			<div class="row">
-				<div class="cell"></div>
-				<div class="cell">name</div>
-				<div class="cell">qty.</div>
-				<div class="cell">time spent</div>
+		<div class="timeline">
+			<div class="block-hour">
+				<div>1</div>
+				<div>2</div>
+				<div>3</div>
+				<div>3</div>
+				<div>4</div>
+				<div>6</div>
+				<div>7</div>
+				<div>8</div>
 			</div>
-			<div class="row" draggable="true">
-				<div class="cell"><input class="ico" type="checkbox"></div>
-<div class="cell">
-	<input id="name" type="text" maxlength="100" value="-------------">
-</div>
-<div class="cell">
-	<input class="qty" type="text" maxlength="3" value="Количество">
-</div>
-				<div class="cell">часы:мин</div>
+			<div class="working-day">
+				<div>d.one</div>
+				<div>d.two</div>
+				<div>d.three</div>
 			</div>
+			<div class="blocks-time">
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+				<div class="blocks-time-hour"></div>
+			</div>
+			<div class="signature">Working day schedule.</div>
 		</div>
-		<p id="press"></p>
-		<div id="message">Copy received ^&</div>
 	</main>
 	<ul id="contextmenu">
 		<li id="delet">Delete</li>

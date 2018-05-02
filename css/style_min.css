@@ -49,7 +49,7 @@ footer > div:hover {
 	margin-top: -1em;
 }
 
-main {
+main > .block-main-timer {
 	margin: 0 auto;
 	width: 423px;
 	/* height: 100vh; */
@@ -829,8 +829,11 @@ div#message.open {
 .timeline {
 	max-width: 329px;
 	display: inline-block;
-	position: relative;
-	top: 28em;
+	border: 1px solid #0a3542;
+	border-radius: 4px;
+	padding: 1em;
+	position: absolute;
+	top: 20.5em;
 	left: 2em
 }
 
@@ -843,15 +846,16 @@ div#message.open {
 	width: 20px;
 	height: 20px;
 	font-size: 11px;
-	color: #02161c;
+	color: #767676;
 	margin: 5px 5px 0 5px;
 	display: inline-block;
+	position: relative;
 	text-align: center;
 	cursor: default
 }
 
 .block-hour > div:hover {
-	color: #021f26
+	color: #8c8b94
 }
 
 .working-day {
@@ -865,7 +869,7 @@ div#message.open {
 	width: 100%;
 	height: 20px;
 	display: inline-block;
-	color: #02161c;
+	color: #767676;
 	font-size: 11px;
 	padding: 1px;
 	margin: 6px;
@@ -873,7 +877,7 @@ div#message.open {
 }
 
 .working-day > div:hover {
-	color: #021f26
+	color: #8c8b94
 }
 
 .blocks-time-hour {
@@ -881,7 +885,7 @@ div#message.open {
 	height: 20px;
 	display: inline-block;
 	margin: 5px;
-	overflow: hidden;
+	//overflow: hidden;
 	position: relative;
 	webkit-box-shadow: inset 5px 3px 20px 0 rgba(0, 0, 0, .5);
 	box-shadow: inset 5px 3px 20px 0 rgba(0, 0, 0, .5)
@@ -896,8 +900,36 @@ div#message.open {
 	box-shadow: inset 5px 5px 0px 0 rgba(0, 0, 0, .5)
 }
 
+.blocks-time-hour:before {
+	content: 'hour of working time';
+	width: 130px;
+	font-size: 11px;
+	text-align: center;
+	display: none;
+	background: #8b8b94;
+	color: #fff;
+	padding: .5em;
+	position: absolute;
+	top: -30px;
+	left: -60px
+}
+
+.blocks-time-hour:after {
+	content: '';
+	border: 7px solid transparent;
+	border-top: 7px solid #8b8b94;
+	display: none;
+	position: absolute;
+	top: -7px;
+	left: 3px
+}
+
+.blocks-time-hour:hover:before, .blocks-time-hour:hover:after {
+	display: inline-block
+}
+
 .signature {
-	color: #767676;
+	color: #1f4aeb;
 	font-size: 11px;
 	margin-left: 4.5em;
 	cursor: default
